@@ -1,5 +1,5 @@
 
- 
+
 
 
 
@@ -9,48 +9,36 @@ window.addEventListener('DOMContentLoaded', function () {
         rules: {
             name: {
                 required: true,
-                minlength: 3
+
             },
-            age: {
+            lastName: {
                 required: true,
-                number: true,
-                min: 18
             },
             email: {
                 required: true,
                 email: true
             },
-            weight: {
-                required: {
-                    depends: function (elem) {
-                        return $("#age").val() > 50
-                    }
-                },
+            phoneNumber: {
+                required: true,
                 number: true,
-                min: 0
-            }
+            },
         },
         messages: {
             name: {
                 minlength: "Name should be at least 3 characters"
             },
-            age: {
-                required: "Please enter your age",
-                number: "Please enter your age as a numerical value",
-                min: "You must be at least 18 years old"
+            phoneNumber: {
+                required: "Please enter your phone number",
+                number: "Please enter your phone number as a numerical value",
             },
             email: {
                 email: "The email should be in the format: abc@domain.tld"
-            },
-            weight: {
-                required: "People with age over 50 have to enter their weight",
-                number: "Please enter your weight as a numerical value"
             }
         }
     });
 
-    let sendBtn = document.getElementById("sendBtn");
 
+    let sendBtn = document.getElementById("sendBtn");
     let checkBoxOne = document.getElementById("checkboxOne");
     let checkBoxTwo = document.getElementById("checkboxTwo");
 
@@ -59,10 +47,10 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
         function postToGoogle() {
-            let field1 = $("#firstName").val();
-            let field2 = $("#lastName").val();
-            let field3 = $("#email").val();
-            let field4 = $("#phoneNumber").val();
+            let name = $("#firstName").val();
+            let lastName = $("#lastName").val();
+            let email = $("#email").val();
+            let phoneNumber = $("#phoneNumber").val();
             let field5 = $("#country option:selected").text();
             let field6 = $("#subject option:selected").text();
             let field7 = $("#company").val();
