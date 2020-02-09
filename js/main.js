@@ -1,8 +1,53 @@
 
+ 
 
 
 
 window.addEventListener('DOMContentLoaded', function () {
+
+    $("#basic-form").validate({
+        rules: {
+            name: {
+                required: true,
+                minlength: 3
+            },
+            age: {
+                required: true,
+                number: true,
+                min: 18
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            weight: {
+                required: {
+                    depends: function (elem) {
+                        return $("#age").val() > 50
+                    }
+                },
+                number: true,
+                min: 0
+            }
+        },
+        messages: {
+            name: {
+                minlength: "Name should be at least 3 characters"
+            },
+            age: {
+                required: "Please enter your age",
+                number: "Please enter your age as a numerical value",
+                min: "You must be at least 18 years old"
+            },
+            email: {
+                email: "The email should be in the format: abc@domain.tld"
+            },
+            weight: {
+                required: "People with age over 50 have to enter their weight",
+                number: "Please enter your weight as a numerical value"
+            }
+        }
+    });
 
     let sendBtn = document.getElementById("sendBtn");
 
@@ -24,23 +69,10 @@ window.addEventListener('DOMContentLoaded', function () {
             let field8 = $("#message").text();
 
 
-            // simple validation
 
-            if (field1 == "") {
-                alert('Please Fill Your Name');
-                document.getElementById("firstName").focus();
-                return false;
-            }
-            if (field2 == "") {
-                alert('Please Fill Your Last name');
-                document.getElementById("lastName").focus();
-                return false;
-            }
-            if (field3 == "") {
-                alert('Please Fill Your Email');
-                document.getElementById("email").focus();
-                return false;
-            }
+
+
+
 
             if (checkBoxOne.checked == true && checkBoxTwo.checked == true) {
                 $.ajax({
@@ -72,3 +104,6 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
 });
+
+
+
